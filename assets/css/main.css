@@ -40,7 +40,7 @@
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
-  --background-color: #f5f6f8;
+  --background-color: #f1f2f4;
   --surface-color: #ffffff;
 }
 
@@ -1187,6 +1187,11 @@ section,
   height: 10px;
   transition: 0.9s;
   background-color: var(--heading-color);
+}
+
+progress::-moz-progress-bar {
+  background-color: #37517e;
+  border-radius: 10px;
 }
 
 /*--------------------------------------------------------------
