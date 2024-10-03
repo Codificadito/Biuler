@@ -33,6 +33,10 @@
     }
 
     statusDiv.classList.remove('d-none');
+
+    setTimeout(() => {
+      statusDiv.classList.add('d-none');
+    }, 5000);
   });
 
 })();

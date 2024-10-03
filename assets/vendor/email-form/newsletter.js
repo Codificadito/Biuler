@@ -33,6 +33,11 @@
     }
 
     newsletterStatusDiv.classList.remove('d-none');
+
+    setTimeout(() => {
+      newsletterStatusDiv.classList.add('d-none');
+    }, 5000);
+
   });
 
 })();  
