@@ -695,6 +695,11 @@ h6 {
   }
 }
 
+.grecaptcha-badge {
+  position: fixed;
+  z-index: 10;
+}
+
 /*--------------------------------------------------------------
 # Scroll Top Button
 --------------------------------------------------------------*/
@@ -702,7 +707,7 @@ h6 {
   position: fixed;
   visibility: hidden;
   opacity: 0;
-  right: 15px;
+  left: 15px;
   bottom: -15px;
   z-index: 99999;
   background-color: var(--accent-color);

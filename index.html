@@ -794,9 +794,11 @@
 
                   <div class="col-md-12 text-center">
                     <div id="contact-status" class="alert d-none alert-dismissible fade show" role="alert">
-                      <span id="form-message"></span>
+                      <span id="contact-message"></span>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    <button type="submit" class="btn btn-primary g-recaptcha"
+                      data-sitekey="6LcKw1wqAAAAAGGWhuG7hEQhLmOvUglj1Co3mlSD" data-callback='onSubmitContact'
+                      data-action='submit'>Enviar Mensaje</button>
                   </div>
 
                 </div>
@@ -820,7 +822,12 @@
             <h4>Suscríbase a nuestro boletín</h4>
             <p>Reciba las últimas novedades sobre nuestros productos y servicios.</p>
             <form id="newsletter-form" action="https://formspree.io/f/mwpkeyqz" method="POST" class="php-email-form">
-              <div class="newsletter-form"><input type="email" name="email" required><input type="submit" value="Suscribirse"></div>
+              <div class="newsletter-form">
+                <input type="email" name="email" required>
+                <input type="submit" value="Suscribirse" class="g-recaptcha"
+                  data-sitekey="6LcKw1wqAAAAAGGWhuG7hEQhLmOvUglj1Co3mlSD" data-callback='onSubmitNewsletter'
+                  data-action='submit'>
+              </div>
               <div id="newsletter-status" class="alert d-none alert-dismissible fade show" role="alert">
                 <span id="newsletter-message"></span>
               </div>
@@ -970,6 +977,69 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+    function onSubmitNewsletter() {
+      const emailInput = document.querySelector('#newsletter-form input[name="email"]');
+      const email = emailInput.value;
+
+      if (!email) {
+        showStatusMessage('newsletter', 'Por favor, ingrese un correo electrónico.', 'alert-danger');
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        showStatusMessage('newsletter', 'Por favor, ingrese un correo electrónico válido.', 'alert-danger');
+        return;
+      }
+
+      document.getElementById("newsletter-form").submit();
+      document.getElementById("newsletter-form").reset();
+    }
+
+    function onSubmitContact() {
+      const nameInput = document.querySelector('#contact-form input[name="name"]');
+      const emailInput = document.querySelector('#contact-form input[name="email"]');
+      const subjectInput = document.querySelector('#contact-form input[name="subject"]');
+      const messageInput = document.querySelector('#contact-form textarea[name="message"]');
+
+      const name = nameInput.value;
+      const email = emailInput.value;
+      const subject = subjectInput.value;
+      const message = messageInput.value;
+
+      if (!name || !email || !subject || !message) {
+        showStatusMessage('contact', 'Por favor, complete todos los campos requeridos.', 'alert-danger');
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        showStatusMessage('contact', 'Por favor, ingrese un correo electrónico válido.', 'alert-danger');
+        return;
+      }
+
+      document.getElementById("contact-form").submit();
+      document.getElementById("contact-form").reset();
+    }
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+    function showStatusMessage(formId, message, alertClass) {
+      const statusDiv = document.getElementById(`${formId}-status`);
+      const messageSpan = document.getElementById(`${formId}-message`);
+
+      messageSpan.innerText = message;
+      statusDiv.className = `alert ${alertClass}`;
+      statusDiv.classList.remove('d-none');
+
+      setTimeout(() => {
+        statusDiv.classList.add('d-none');
+      }, 5000);
+    }
+  </script>
 </body>
 
 </html>
