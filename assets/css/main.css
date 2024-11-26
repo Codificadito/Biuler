@@ -2085,3 +2085,50 @@ progress::-moz-progress-bar {
 .starter-section {
   /* Add your styles here */
 }
+
+.team-card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.team-card img {
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 3px solid #007bff;
+}
+
+.team-card h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.team-card span {
+  display: block;
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.team-card p {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+@media (max-width: 768px) {
+  .team-card img {
+    height: 200px;
+  }
+}
