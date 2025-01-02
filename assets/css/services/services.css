@@ -1,0 +1,15 @@
+ul.list-unstyled li {
+    font-size: 1rem;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+  }
+  
+  ul.list-unstyled li i {
+    font-size: 1.2rem;
+  }
+  
+  ul.list-unstyled li strong {
+    color: #333;
+  }
+  
