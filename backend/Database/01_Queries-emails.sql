@@ -1,0 +1,19 @@
+CREATE DATABASE biuler_db;
+
+USE biuler_db;
+
+CREATE TABLE emails_received(
+	email_received_id BIGINT PRIMARY KEY IDENTITY(1,1),
+	fullName NVARCHAR(255) NOT NULL,
+	email NVARCHAR(255) NOT NULL,
+	subject NVARCHAR(255) NOT NULL,
+	message NVARCHAR(MAX) NOT NULL,
+	created_at DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE suscriptions(
+	suscription_id BIGINT PRIMARY KEY IDENTITY(1, 1),
+	email NVARCHAR(255) UNIQUE NOT NULL,
+	created_at DATETIME DEFAULT GETDATE(),
+	last_sent DATETIME
+);

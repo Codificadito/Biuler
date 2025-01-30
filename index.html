@@ -1017,7 +1017,7 @@
 
   <script src="https://www.google.com/recaptcha/api.js"></script>
   <script>
-    function onSubmitNewsletter() {
+    async function onSubmitNewsletter() {
       const emailInput = document.querySelector('#newsletter-form input[name="email"]');
       const email = emailInput.value;
 
@@ -1031,11 +1031,37 @@
         return;
       }
 
-      document.getElementById("newsletter-form").submit();
-      document.getElementById("newsletter-form").reset();
+      try {
+        const response = await fetch('http://localhost:6999/api/createSuscription', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          showStatusMessage('newsletter', '¡Suscripción exitosa!', 'alert-success');
+          emailInput.value = ''; //Limpiar el campo de entrada.
+        } else {
+          showStatusMessage(
+            'newsletter',
+            data.message || 'Ocurrió un error al suscribirse.',
+            'alert-danger'
+          );
+        }
+      } catch (error) {
+        showStatusMessage(
+          'newsletter',
+          'No se pudo conectar con el servidor. Intente nuevamente.',
+          'alert-danger'
+        );
+      }
     }
 
-    function onSubmitContact() {
+    async function onSubmitContact() {
       const nameInput = document.querySelector('#contact-form input[name="name"]');
       const emailInput = document.querySelector('#contact-form input[name="email"]');
       const subjectInput = document.querySelector('#contact-form input[name="subject"]');
@@ -1056,9 +1082,40 @@
         return;
       }
 
-      document.getElementById("contact-form").submit();
-      document.getElementById("contact-form").reset();
+      try {
+        const response = await fetch('http://localhost:6999/api/contactUs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ fullname: name, email, subject, message }),
+         });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          showStatusMessage('contact', '¡Mensaje enviado exitosamente!', 'alert-success');
+          //Limpiar los campos del formulario.
+          nameInput.value = '';
+          emailInput.value = '';
+          subjectInput.value = '';
+          messageInput.value = '';
+        } else {
+          showStatusMessage(
+            'contact', 
+            data.message || 'Ocurrió un error al enviar el mensaje.', 
+            'alert-danger'
+          );
+        }
+      } catch (error) {
+        showStatusMessage(
+          'contact', 
+          'No se pudo conectar con el servidor. Intente nuevamente.', 
+          'alert-danger'
+        );
+      }
     }
+
 
     function validateEmail(email) {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
