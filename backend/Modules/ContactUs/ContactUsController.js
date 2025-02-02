@@ -15,7 +15,7 @@ const createDebugMail = async (req, res) => {
     const body = await ContactUsService.createDebugMail(fullname, email, subject, message);
     return res.status(200).json({ 
       success: true, 
-      body
+      message : "se recibio tu correo exitosamente"
     });
   } catch (error) {
     //Registro del error.

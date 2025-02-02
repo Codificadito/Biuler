@@ -22,7 +22,7 @@ const createSuscriptor = async (email) => {
     if (!isValidEmail(email)) { throw new Error('El correo está en un formato inválido.'); }
 
     //4. Verifica que no está duplicado.
-    const find = SuscriptionRepository.findEmail(email);
+    const find = await SuscriptionRepository.findEmail(email);
     if (find) { throw new Error('Ya hay un suscriptor con ese email.'); }
 
     //5. Crea suscriptor sino está duplicado.

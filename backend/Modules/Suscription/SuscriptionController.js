@@ -19,7 +19,7 @@ const createSuscriptor = async (req, res) => {
     const body = await SuscriptionService.createSuscriptor(email);
     return res.status(200).json({ 
       success: true, 
-      body
+      message: "Suscripcion exitosa"
     });
   } catch (error) {
     //Registro del error.

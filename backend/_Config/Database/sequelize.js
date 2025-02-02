@@ -53,7 +53,6 @@ const config = {
   options: {
   	encrypt: false,
     database: process.env.DB_name,
-    instanceName: 'SQLEXPRESS',
     trustServerCertificate: true,
   },
 };

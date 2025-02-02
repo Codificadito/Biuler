@@ -39,10 +39,10 @@ const createDebugMail = async (fullname, email, subject, message) => {
         text: `Nombre: ${fullname}\nCorreo: ${email}\nAsunto: ${subject}\nMensaje: ${message}`,
       }),
       transporter.sendMail({ //Enviar confirmación al usuario:
-        from: `"Soporte" <${process.env.NAME_EMAIL}>`,
+        from: `"Contacto" <${process.env.NAME_EMAIL}>`,
         to: email,
         subject: 'Confirmación de envío',
-        text: `Gracias por informarnos, haremos todo lo posible para solucionar el problema.
+        text: `Gracias por contactarnos. El equipo de Biuler se pondrá en contacto con usted.
               \n\nDatos enviados:
               \nNombre: ${fullname}
               \nCorreo: ${email}
