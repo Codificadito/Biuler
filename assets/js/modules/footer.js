@@ -25,8 +25,8 @@ class FooterComponent extends HTMLElement {
               <div class="col-lg-2 col-md-3 footer-links">
                 <h4>Links útiles</h4>
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <a href="https://biuler.com#hero">Inicio</a></li>
-                  <li><i class="bi bi-chevron-right"></i> <a href="https://biuler.com#about">Sobre Nosotros</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="https://www.biuler.com#hero">Inicio</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="https://www.biuler.com#about">Sobre Nosotros</a></li>
                   <li><i class="bi bi-chevron-right"></i> <a>Políticas de privacidad</a></li>
                   <li><i class="bi bi-chevron-right"></i> <a>Términos del Servicio</a></li>
                 </ul>
